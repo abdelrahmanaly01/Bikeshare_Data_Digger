@@ -17,7 +17,7 @@ def get_filters():
     """
     print('Hello! Let\'s explore some US bikeshare data!')
 
-    check_month = ['none','1','2','3','4','5','6']
+    check_month = map(str, range(6))
     check_day = map(str, range(31))
     check_city = ['chicago','washington','new york city','none']
     while True :
@@ -28,7 +28,7 @@ def get_filters():
 
         day = input('please choose day as integer or None : ').lower()
 
-        if (month not in check_month) or (day not in check_day and day != 'none') or (city not in check_city) :
+        if (month not in check_month and month != 'none') or (day not in check_day and day != 'none') or (city not in check_city) :
             print("--Oops!you have entered wrong value ,please try again --")
         else:
             break
@@ -107,7 +107,7 @@ def station_stats(df):
     print('-'*40)
 
 
-def trip_duration_stats(df):
+def duration_stats(df):
     """Displays statistics on the total and average trip duration."""
 
     print('\nCalculating Trip Duration...\n')
@@ -182,7 +182,7 @@ def main():
 
         time_stats(df)
         counter = 0
-        info_list = ['station_stats(df)', 'trip_duration_stats(df)', 'user_stats(df)']
+        info_list = ['station_stats(df)', 'duration_stats(df)', 'user_stats(df)']
         info_name = ["Stations ","Trip Duration","users"]
         while counter <= 2:
             answer=input("would you like to show information about {} ?('yes' or 'skip') : ".format(info_name[counter])).lower()
