@@ -16,19 +16,19 @@ def get_filters():
         (str) day - name of the day of week to filter by, or "all" to apply no day filter
     """
     print('Hello! Let\'s explore some US bikeshare data!')
- 
-    check_month = ['none','1','2','3','4','5','6']
+
+    check_month = map(str, range(6))
     check_day = map(str, range(31))
     check_city = ['chicago','washington','new york city','none']
     while True :
-       
+
         city = input('please choose a city (chicago, new york city, washington). make sure that you enter a string : ').lower()
 
         month = input('please choose month to filter by (jan=1, feb=2, mar=3,apr=4,may=5,jun=6) or None : ').lower()
 
         day = input('please choose day as integer or None : ').lower()
-        
-        if (month not in check_month) or (day not in check_day and day != 'none') or (city not in check_city) :
+
+        if (month not in check_month and month != 'none') or (day not in check_day and day != 'none') or (city not in check_city) :
             print("--Oops!you have entered wrong value ,please try again --")
         else:
             break
@@ -48,10 +48,10 @@ def load_data(city, month, day):
     Returns:
         df - Pandas DataFrame containing city data filtered by month and day
     """
-    
+
     the_full_df = pd.read_csv('./{}'.format(CITY_DATA[city]))
     Time = pd.to_datetime(the_full_df['Start Time'])
-    
+
     if day =="none" and month == "none" :
         df = the_full_df
     elif month == "none" :
@@ -145,16 +145,16 @@ def user_stats(df):
         print("the earlist year of birth : {} \n ".format(int(earlist_birth)))
         print("the most recent year of birth : {} \n ".format(int(recent_birth)))
         print("the most common year of birth : {} \n ".format(int(common_birth)))
-       
+
     else:
         type_count = df.groupby(['User Type'])['Start Time'].count()
         print("the count of eatch user type \n {}".format(type_count))
         print("this data don't have (Gender or date of birth")
-        
+
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
-    
-    
+
+
 def display_data(df):
     counter2 = 5
     while True:
@@ -178,14 +178,14 @@ def main():
     while True:
         city, month, day = get_filters()
         df = load_data(city, month, day)
-    
+
         time_stats(df)
         counter = 0
         info_list = ['station_stats(df)', 'trip_duration_stats(df)', 'user_stats(df)']
         info_name = ["Stations ","Trip Duration","users"]
         while counter <= 2:
             answer=input("would you like to show information about {} ?('yes' or 'skip') : ".format(info_name[counter])).lower()
-            if answer == "yes" : 
+            if answer == "yes" :
                 exec(info_list[counter])
                 counter+=1
             elif answer == "skip" :
@@ -194,12 +194,12 @@ def main():
             else :
                 print('please enter (yes to show data) or (skip to continue)')
                 continue
-                
+
         display_data(df)
         restart = input('\nWould you like to restart? Enter yes or no.\n')
         if restart.lower() != 'yes':
             break
-    
-    
+
+
 if __name__ == "__main__":
 	main()
