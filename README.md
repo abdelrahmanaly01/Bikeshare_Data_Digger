@@ -11,11 +11,14 @@ the project is easy to use,its provided with user  interact system which will he
 by just answering yes or no.
 
 ### Files used
-the script : bikeshare.py
-the data sets :
-washington.csv
-new_york_city.csv
-chicago.csv
+
+#bikeshare.py
+
+#washington.csv
+
+#new_york_city.csv
+
+#chicago.csv
 
 
 ### Credits
