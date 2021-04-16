@@ -8,7 +8,7 @@ bikeshare data digger
 this project is a data analysis project which dig through the bikeshare data to extract info about customers,duration,stations..etc
 
 the project is easy to use,its provided with user  interact system which will help any user to go through the data and get what he/she need
-by just answering yes or no.
+by just answering yes or no all you have to do is run the script file within the folder containing the 3 datasets.
 
 ### Files used
 
